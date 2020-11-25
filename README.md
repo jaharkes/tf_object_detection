@@ -35,8 +35,6 @@ import object_detection
 ## What's in here
 
 * [setup.py](setup.py): The python packaging script.
-* `PROTOC` Environment variable should be set so that `setup.py` can compile as
-  part of the `setup.py` execution.
 
 ```bash
 # Download and setup all required dependencies required for tensorflow object 
@@ -44,4 +42,5 @@ import object_detection
 $ python setup.py install
 ```
 
+* `protoc_compile.py`: Helper script to compile protocol buffer wrappers.
 * `tensorflow_models`: A git submodule pointing to the version of tensorflow object detection this thin wrapper is for.

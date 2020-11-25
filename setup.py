@@ -1,56 +1,24 @@
-import glob
-import sys
 import os
-import shutil
-from distutils.spawn import find_executable
 import setuptools
-import subprocess
-from typing import List
+
+from protoc_compile import build
+build()
 
 file_dir = os.path.dirname(os.path.realpath(__file__))
-
-
-def runcmd(cmds: List[str]):
-    return subprocess.call(cmds, shell=True)
-
-
-# Find the Protocol Compiler.
-if 'PROTOC' in os.environ and os.path.exists(os.environ['PROTOC']):
-  protoc = os.environ['PROTOC']
-else:
-  protoc = find_executable("protoc")
-
-if not protoc:
-    error = "protoc command not found in PATH."\
-    " install the protoc command system wide or set the PROTOC env"\
-    " variable with protoc executable path."
-    print(error)
-    sys.exit(1)
-
-proto_commands = [
-    "cd ./tensorflow_models/research;" +
-    protoc +
-    " object_detection/protos/*.proto" +
-    " --python_out=."
-]
-# Pull the upstream object_detection code and package it.
-runcmd(['git', 'submodule', 'update', '--init'])
-runcmd(proto_commands)
-
-
-with open(os.path.join(file_dir, 'README.md')) as f:
+with open(os.path.join(file_dir, "README.md")) as f:
     long_description = f.read()
 
 install_requires = [
-    'setuptools>=41.0.0',  # tensorboard requirements
-    'cython',
-    'contextlib2',
-    'pillow',
-    'lxml',
+    "setuptools>=41.0.0",  # tensorboard requirements
+    "contextlib2",
+    "Cython",
+    "lxml",
+    "matplotlib",
+    "Pillow",
+    "protobuf",
+    "protoc-wheel-0",
     # replacement for pycocotools, as the published pypi package fails on cython and numpy dependencies
-    'pycocotools-fix',
-    'jupyter',
-    'matplotlib'
+    "pycocotools-fix",
 ]
 
 extras_require = {
@@ -68,8 +36,10 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/junjuew/tf_object_detection',
     packages=setuptools.find_packages(
-        where='tensorflow_models/research', include=['object_detection', 'object_detection.*']) + setuptools.find_packages(
-        where='tensorflow_models/research/slim'),
+        where="tensorflow_models/research",
+        include=["object_detection", "object_detection.*"],
+    )
+    + setuptools.find_packages(where="tensorflow_models/research/slim"),
     package_dir={
         '': 'tensorflow_models/research/slim',  # tf slim dependencies
         'object_detection': 'tensorflow_models/research/object_detection'},
