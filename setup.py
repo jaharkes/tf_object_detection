@@ -28,7 +28,7 @@ if not protoc:
     sys.exit(1)
 
 proto_commands = [
-    "cd ./tf_object_detection/research;" +
+    "cd ./tensorflow_models/research;" +
     protoc +
     " object_detection/protos/*.proto" +
     " --python_out=."
@@ -68,11 +68,11 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     url='https://github.com/junjuew/tf_object_detection',
     packages=setuptools.find_packages(
-        where='tf_object_detection/research', include=['object_detection', 'object_detection.*']) + setuptools.find_packages(
-        where='tf_object_detection/research/slim'),
+        where='tensorflow_models/research', include=['object_detection', 'object_detection.*']) + setuptools.find_packages(
+        where='tensorflow_models/research/slim'),
     package_dir={
-        '': 'tf_object_detection/research/slim',  # tf slim dependencies
-        'object_detection': 'tf_object_detection/research/object_detection'},
+        '': 'tensorflow_models/research/slim',  # tf slim dependencies
+        'object_detection': 'tensorflow_models/research/object_detection'},
     license='Apache License 2.0',
     install_requires=install_requires,
     extras_require=extras_require,

@@ -44,4 +44,4 @@ import object_detection
 $ python setup.py install
 ```
 
-* tf_object_detection: A git submodule pointing to the version of tensorflow object detection this thin wrapper is for.
+* `tensorflow_models`: A git submodule pointing to the version of tensorflow object detection this thin wrapper is for.

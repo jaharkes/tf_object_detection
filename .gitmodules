@@ -1,5 +1,5 @@
-[submodule "tf_object_detection"]
-	path = tf_object_detection
+[submodule "tensorflow_models"]
+	path = tensorflow_models
 	url = https://github.com/tensorflow/models.git
 	ignore = dirty
 	shallow = true
