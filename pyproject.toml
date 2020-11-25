@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "tf-object-detection"
+version = "0.1.0"
+description = "Wrapper to ease installation of the Tensorflow Object Detection API"
+authors = [
+    "Jan Harkes <jaharkes@cs.cmu.edu>",
+    "Junjue Wang <junjuew@cs.cmu.edu>",
+]
+license = "Apache-2.0"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+]
+packages = [
+    { include = "object_detection", from = "tensorflow_models/research" },
+    { include = "datasets", from = "tensorflow_models/research/slim" },
+    { include = "deployment", from = "tensorflow_models/research/slim" },
+    { include = "nets", from = "tensorflow_models/research/slim" },
+    { include = "preprocessing", from = "tensorflow_models/research/slim" },
+]
+# Excluding these paths makes the sdist and wheel significantly smaller
+exclude = [
+    "tensorflow_models/research/object_detection/g3doc/",
+    "tensorflow_models/research/object_detection/test_*/",
+]
+build = "protoc_compile.py"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+contextlib2 = "^0.6.0"
+Cython = "^0.29.21"
+lxml = "^4.6.1"
+matplotlib = "^3.3.3"
+Pillow = "^8.0.1"
+protobuf = "^3.13.0"
+pycocotools = "^2.0.2"
+tensorflow = {version = "~1.15.4", optional = true}
+tensorflow-gpu = {version = "~1.15.4", optional = true}
+
+[tool.poetry.extras]
+tf = ["tensorflow"]
+tf-gpu = ["tensorflow-gpu"]
+
+[tool.poetry.dev-dependencies]
+protoc-wheel-0 = "^3.13.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "setuptools", "protoc-wheel-0>=3.13.0"]
+build-backend = "poetry.core.masonry.api"

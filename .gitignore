@@ -1,5 +1,3 @@
 build/
 dist/
 __pycache__/
-conda-env
-.vscode
