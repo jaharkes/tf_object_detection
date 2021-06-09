@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2020-2021 Carnegie Mellon University
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Executed during setup to compile .proto files"""
 
 from pathlib import Path
